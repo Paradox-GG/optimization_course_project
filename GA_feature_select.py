@@ -110,16 +110,16 @@ def cross(community, p_mutate, K):
     for k in range(0, len(community), 2):
         p = np.random.rand()
         if p < p_mutate:
-            gene1 = community[k].copy()                               # 不要和原列表搅在一起， 下面要进行交叉
+            gene1 = community[k].copy()                                   
             gene2 = community[k+1].copy()
 
             start_point = np.random.randint(len(gene1))
 
-            new_gene1 = np.hstack((gene1[:start_point].copy(), gene2[start_point:].copy()))      # 交叉项不要和上面的关联
+            new_gene1 = np.hstack((gene1[:start_point].copy(), gene2[start_point:].copy()))      
             new_gene2 = np.hstack((gene2[:start_point].copy(), gene1[start_point:].copy()))
 
-            if sum(new_gene1) == K and sum(new_gene2) == K:        # 为了保证选出来的特征一定有K个， 交叉结果必须有两个选中， 否则不交换
-                community[k] = new_gene1                           # 下一次会有新的， 不用担心关联
+            if sum(new_gene1) == K and sum(new_gene2) == K:        # 为了保证选出来的特征一定有K个，否则不交换
+                community[k] = new_gene1                           
                 community[k+1] = new_gene2
     return community
 
@@ -222,7 +222,7 @@ def GA_select_features_(X, y, iter_times, K):
 
 
 def svm_classification(X, y, kno):
-    kernels = ["linear", "poly", "rbf", "sigmoid"]   # 本次作业中选择的核函数
+    kernels = ["linear", "poly", "rbf", "sigmoid"]   # 可选的SVM核函数
     kernel = kernels[kno]
     print()
     print('choose the kernel: {}.'.format(kernel))
